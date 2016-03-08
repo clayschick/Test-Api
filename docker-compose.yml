@@ -1,8 +1,11 @@
 testapi:
    image: node
    ports:
-      - "8080:8080"
+      - "8000:8000"
+      - "5858:5858"
+#   expose:
+#      - "5858"
    volumes:
-      - ./:/usr/src/app
-   working_dir: /usr/src/app
-   command: npm start
+      - ./:/opt/app/node
+   working_dir: /opt/app/node
+   command: "npm start"
