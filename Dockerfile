@@ -1,6 +1,8 @@
 FROM node
 
-ADD . /opt/app/node
+RUN mkdir -p /opt/app
+
+ADD . /opt/app
 
 RUN npm install
 
