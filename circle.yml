@@ -12,7 +12,7 @@ dependencies:
     - docker build -t clayschick/testapi:$CIRCLEBUILD_NUM .
     
 deployment:
-   develop:
-      branch: develop
+   master:
+      branch: master
       commands:
          - docker push $IMAGE_PATH:$TAG_NAME
