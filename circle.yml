@@ -1,0 +1,18 @@
+machine:
+   services:
+      - docker
+   environment:
+      SHORT_SHA: $(echo $CIRCLE_SHA1 | cut -b1-7)
+      TAG_NAME: “br-$CIRCLE_BRANCH-$SHORT_SHA”
+      IMAGE_PATH: “clayschick/testapi”
+      
+dependencies:
+  pre:
+    - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+    - docker build -t clayschick/testapi:$CIRCLE_BUILD_NUM .
+    
+deployment:
+   qa:
+      branch: develop
+      commands:
+         - docker push clayschick/testapi:$CIRCLE_BUILD_NUM
