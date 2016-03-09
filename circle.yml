@@ -1,0 +1,20 @@
+machine:
+   testapi:
+      version: 0.1.0
+   services:
+      - docker
+   environment:
+      SHORT_SHA: $(echo $CIRCLE_SHA1 | cut -b1-7)
+      TAG_NAME: “br-$CIRCLE_BRANCH-$SHORT_SHA”
+      IMAGE_PATH: “clayschick/testapi”
+      
+dependencies:
+  pre:
+    - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+    - docker build -t $IMAGE_PATH:$TAG_NAME .
+    
+deployment:
+   develop:
+      branch: develop
+      commands:
+         - docker push $IMAGE_PATH:$TAG_NAME
