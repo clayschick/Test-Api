@@ -9,7 +9,7 @@ machine:
 dependencies:
   pre:
     - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-    - docker build -t $IMAGE_PATH:$TAG_NAME .
+    - docker build -t clayschick/testapi:$CIRCLEBUILD_NUM .
     
 deployment:
    develop:
