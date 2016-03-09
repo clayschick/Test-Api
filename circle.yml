@@ -12,7 +12,7 @@ dependencies:
     - docker build -t clayschick/testapi:$CIRCLE_BUILD_NUM .
     
 deployment:
-   master:
-      branch: master
+   qa:
+      branch: develop
       commands:
          - docker push clayschick/testapi:$CIRCLE_BUILD_NUM
