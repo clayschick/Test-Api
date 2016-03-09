@@ -6,7 +6,7 @@ ADD . /opt/app
 
 RUN npm install
 
-WORKDIR /opt/app/node
+WORKDIR /opt/app
 
 EXPOSE 8000
 
